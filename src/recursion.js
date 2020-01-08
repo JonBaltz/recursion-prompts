@@ -22,29 +22,25 @@ var sum = function(array) {
   if (array.length === 0) {
     return 0;
   }
-  var shorter = array.slice();
-  shorter.shift();
-  return array[0] + sum(shorter);
+  return array[0] + sum(array.slice(1));
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  // Adds base case to recursion
   if (array.length === 0) {
     return 0;
   }
-  var current = array[0];
-  // If the first value is an array:
-  if (Array.isArray(current)) {
-    // We want to sum each value inside that array
-    current = Number(arraySum(current));
+  if (Array.isArray(array[0])) {
+    // If the first value is an array, sums all the values in that array
+    var current = arraySum(array[0]);
+    // then
+    return current + arraySum(array.slice(1));
   }
-  var shorter = array.slice();
-  shorter.shift();
-  return Number(current + sum(shorter));
+  // If the first value is just a number, adds that number to the sum of the rest of the array
+  return array[0] + arraySum(array.slice(1));
 };
-// For some reason this works in the console and when run in other files
-// but will fail in the test site
 
 // 4. Check if a number is even.
 var isEven = function(n) {};
