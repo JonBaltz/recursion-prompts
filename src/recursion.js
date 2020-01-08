@@ -35,7 +35,7 @@ var arraySum = function(array) {
   if (Array.isArray(array[0])) {
     // If the first value is an array, sums all the values in that array
     var current = arraySum(array[0]);
-    // then
+    // then adds that to the rest of the array
     return current + arraySum(array.slice(1));
   }
   // If the first value is just a number, adds that number to the sum of the rest of the array
@@ -43,7 +43,24 @@ var arraySum = function(array) {
 };
 
 // 4. Check if a number is even.
-var isEven = function(n) {};
+var isEven = function(n) {
+  // An even number occurs every other time an integer occurs
+  // 1(odd), 2(even), 3(odd), 4(even)
+  if (n === 0) {
+    // Zero is odd
+    return true;
+  }
+  if (n > 0) {
+    // If positive we subtract toward zero
+    // and the number that comes after is the opposite evenness
+    return !isEven(--n);
+  }
+  if (n < 0) {
+    // If negative we add toward zero
+    // and the number that comes after is the opposite evenness
+    return !isEven(++n);
+  }
+};
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
