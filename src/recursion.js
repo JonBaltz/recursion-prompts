@@ -29,7 +29,22 @@ var sum = function(array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function(array) {};
+var arraySum = function(array) {
+  if (array.length === 0) {
+    return 0;
+  }
+  var current = array[0];
+  // If the first value is an array:
+  if (Array.isArray(current)) {
+    // We want to sum each value inside that array
+    current = Number(arraySum(current));
+  }
+  var shorter = array.slice();
+  shorter.shift();
+  return Number(current + sum(shorter));
+};
+// For some reason this works in the console and when run in other files
+// but will fail in the test site
 
 // 4. Check if a number is even.
 var isEven = function(n) {};
