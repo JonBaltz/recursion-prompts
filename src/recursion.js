@@ -81,7 +81,27 @@ var sumBelow = function(n) {
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
-var range = function(x, y) {};
+var range = function(x, y) {
+  // Base case
+  if (x === y) {
+    // range(4, 4) = []
+    return [];
+  }
+  if (x < y) {
+    // Adds small to large when first number is smaller
+    var recur = range(x, y - 1);
+    if (!(x === y - 1)) {
+      recur.push(y - 1);
+    }
+  } else {
+    // Adds large to small when first number is greater
+    var recur = range(x - 1, y);
+    if (!(x - 1 === y)) {
+      recur.unshift(x - 1);
+    }
+  }
+  return recur;
+};
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
