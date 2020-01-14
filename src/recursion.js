@@ -205,11 +205,49 @@ var palindrome = function(string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function(x, y) {};
+var modulo = function(x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+  var a = x < 0 ? (a = -x) : x;
+  var b = y < 0 ? (b = -y) : y;
+  if (b > a) {
+    return x;
+  } else if (x === y) {
+    return 0;
+  }
+  if (x > 0 || (x < 0 && y < 0)) {
+    return modulo(x - y, y);
+  } else {
+    return modulo(x + y, y);
+  }
+};
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
-var multiply = function(x, y) {};
+var multiply = function(x, y) {
+  if (y === 1) {
+    return x;
+  } else if (y === 0) {
+    return 0;
+  } else if (y === -1) {
+    return -x;
+  }
+
+  if (x > 0) {
+    if (y > 0) {
+      return x + multiply(x, y - 1);
+    } else {
+      return -x + multiply(x, y + 1);
+    }
+  } else {
+    if (y > 0) {
+      return x + multiply(x, y - 1);
+    } else {
+      return -x + multiply(x, y + 1);
+    }
+  }
+};
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
