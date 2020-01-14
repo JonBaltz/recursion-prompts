@@ -143,13 +143,57 @@ var exponent = function(base, exp) {
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
-var powerOfTwo = function(n) {};
+var powerOfTwo = function(n) {
+  // Divides by two until it reaches 1 or goes below
+  // Nu mbers that never reach 1 aren't powers of 2
+  if (n === 1) {
+    return true;
+  }
+  if (n < 1) {
+    return false;
+  }
+  if (n > 1) {
+    return powerOfTwo(n / 2);
+  }
+};
 
 // 9. Write a function that reverses a string.
-var reverse = function(string) {};
+var reverse = function(string) {
+  // var reversed = '';
+  // // Base case:
+  // if () {
+  //   //
+  // }
+  // return reversed;
+};
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {};
+var palindrome = function(string) {
+  console.log(string);
+  var letters = string.split('');
+  var leng = letters.length;
+  // Base case: if there are only one or two letters
+  if (leng === 2) {
+    if (letters[0].toLowerCase() === letters[1].toLowerCase()) {
+      return true;
+    }
+    return false;
+  } else if (leng === 1) {
+    return true;
+  }
+
+  if (letters[0].toLowerCase() === letters[letters.length - 1].toLowerCase()) {
+    // If the first and last letters match:
+    // check if the second and second last match
+    letters.pop();
+    letters.shift();
+    var newString = letters.join('');
+    return palindrome(newString);
+  } else {
+    // If the first and last don't match:
+    return false;
+  }
+};
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
